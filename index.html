@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Get Quote</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+      #quoteDisplay {
+        margin-top: 20px;
+        font-size: 1.5em;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Random Quote Generator</h1>
+    <label for="category">Choose a category:</label>
+    <select id="category">
+      <option value="life">Life</option>
+      <option value="love">Love</option>
+      <option value="joke">Joke</option>
+      <option value="programming">Programming</option>
+    </select>
+    <button id="getQuoteBtn">Get Quote</button>
+    <p id="quoteDisplay"></p>
+
+    <script>
+      document
+        .getElementById("getQuoteBtn")
+        .addEventListener("click", function () {
+          const category = document.getElementById("category").value;
+          fetch(`http://127.0.0.1:5000/api/quote?category=${category}`)
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              return response.json();
+            })
+            .then((data) => {
+              if (data.quote) {
+                document.getElementById("quoteDisplay").innerText = data.quote;
+              } else {
+                document.getElementById("quoteDisplay").innerText =
+                  "No quote found for this category.";
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              document.getElementById("quoteDisplay").innerText =
+                "Error fetching quote.";
+            });
+        });
+    </script>
+  </body>
+</html>
