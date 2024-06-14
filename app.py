@@ -87,7 +87,6 @@ quotes = {
         "The only impossible journey is the one you never begin.",
         "Life is what we make it, always has been, always will be.",
         "The greatest glory in living lies not in never falling, but in rising every time we fall.",
-        "Life is a journey, not a destination.",
     ],
     "joke": [
         "I told my wife she was drawing her eyebrows too high. She looked surprised.",
